@@ -14,4 +14,4 @@
 
 ## These tasks are designed to help develop skills in automating infrastructure setup, managing cloud resources, and using containerization tools. All of which are essential competencies in DevOps.
 
-![pdf flow chart](/assests/Project-Illustration.pdf)
+[pdf flow chart](/assests/Project-Illustration.pdf)
