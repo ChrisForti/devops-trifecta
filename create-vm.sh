@@ -85,6 +85,10 @@ else
   multipass launch --name relativepath --cloud-init cloud-init.yaml
 fi
 
+# Copies webserver.sh to VM
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }'):~/
+
 # SSH into Relativepath VM
-ssh -o StrictHostKeyChecking=no -i "./id_ed25519" $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')
-ssh -o StrictHostKeyChecking=no -i "./id_ed25519" "$(whoami | cut -d '\' -f2)@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')" 'bash webserver.sh'
+ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')" 'bash webserver.sh'
+
+
