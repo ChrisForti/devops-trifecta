@@ -53,9 +53,9 @@ fi
 # ssh keys
 if [ stat "./id_ed25519" ]
 then
-  echo "relativepath ssh key exists"
+  echo "trifecta ssh key exists"
 else
-  echo "relativepath ssh key does not exist, creating..."
+  echo "creating ssh keys for trifecta"
   ssh-keygen -f ./id_ed25519 -t ed25519 -b 4096 -N ''
 fi
 
@@ -77,18 +77,18 @@ EOF
 fi
 
 # Spinning up an ubuntu vm
-if ( multipass info relativepath | grep Running )
+if ( multipass info trifecta | grep Running )
 then 
-  echo "relativepath vm is running"
+  echo "trifecta vm is running"
 else 
-  echo "launching a ubuntu vm named relativepath"
-  multipass launch --name relativepath --cloud-init cloud-init.yaml
+  echo "launching a ubuntu vm named trifecta"
+  multipass launch --name trifecta --cloud-init cloud-init.yaml
 fi
 
 # Copies webserver.sh to VM
-scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }'):~/
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
 
-# SSH into Relativepath VM
-ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')" 'bash webserver.sh'
+# SSH into trifecta VM
+ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }')" 'bash webserver.sh'
 
 

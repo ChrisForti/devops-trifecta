@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# delete and purge relativepath VM
-if ( ! multipass list | grep relativepath )
+# delete and purge trifecta VM
+if ( ! multipass list | grep trifecta )
 then
-  echo "no relativepath VM found"
+  echo "no trifecta VM found"
 else 
-  multipass delete --purge relativepath
-  echo "relativepath VM has been deleted and purged"
+  multipass delete --purge trifecta
+  echo "trifecta VM has been deleted and purged"
 fi
 
 if (stat id_ed25519)
