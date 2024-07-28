@@ -91,6 +91,6 @@ scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh $USER@$(multipass i
 # SSH into trifecta VM
 ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }')" 'bash webserver.sh'
 
-# this utilizes multipass exec to manipulate the vm from another terminal. this is just here for notes and testing
+# The commands below utilizes multipass exec to manipulate the vm from another terminal. this is just here for notes and testing
 # zsh create-vm.sh && multipass exec trifecta -- sudo apt update && multipass exec trifecta -- sudo apt install -y nginx &&  multipass exec trifecta -- curl localhost && multipass info trifecta
 
