@@ -1,5 +1,7 @@
 # This repository will house DevOps automation scripts
 
+I would ideally like to be able to run a create script that would be preloaded with an assortment of install scripts. This would allow versatillity, and give me a platform to then go whatever direction is needed for the task at hand.
+
 1. Create a VM (including a script to delete the VM):
    - **Purpose:** This task teaches you how to manage virtual machines (VMs), which are fundamental components in cloud computing and infrastructure management. Writing scripts for creating and deleting VMs helps automate infrastructure provisioning and teardown, making it easier to manage resources efficiently.
 2. Write a script to install Jenkins on a VM on your local machine:
