@@ -4,6 +4,13 @@
 
 # Update the package list
 sudo apt update
+if (apt-cache show awscli)
+then
+  echo "Running awscli's latest"
+else
+  echo "Updating the latest awscli"
+  sudo apt update
+fi
 
 # Install Python and pip if not already installed
 if ( which python)
