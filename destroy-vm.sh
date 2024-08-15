@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # delete and purge trifecta VM
 multipass delete --purge trifecta
 # Remove any and all id_ed255129 ssh keys 
