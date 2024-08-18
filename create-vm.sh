@@ -86,7 +86,7 @@ else
 fi
 
 # Copies webserver.sh to VM
-scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh docker-install.sh amazon-cli-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh aws-cli-install.sh jenkins-install.sh ansible-install.sh docker-install.sh amazon-cli-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
 
 # SSH into trifecta VM
 ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }')" 
