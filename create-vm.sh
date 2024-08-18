@@ -93,4 +93,3 @@ ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(mu
 
 # The commands below utilize multipass exec to manipulate the vm from another terminal. this is just here for notes and testing
 # zsh create-vm.sh && multipass exec trifecta -- sudo apt update && multipass exec trifecta -- sudo apt install -y nginx &&  multipass exec trifecta -- curl localhost && multipass info trifecta
-
