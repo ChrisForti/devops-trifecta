@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update the package list
-if (apt-cache show awscli)
+if (which awscli)
 then
   echo "Running awscli's latest"
 else
@@ -10,12 +10,22 @@ else
 fi
 
 # Install Python and pip if not already installed
-if (which python)
+if (test -d awscliv2.zip)
 then
-  echo "python already installed"
+  echo "awscli already installed"
 else
-  echo "Installing python, and pip"
-  sudo apt install -y python3 python3-pip pipx
+  echo "downloading zip installer"
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+fi
+
+# A tool to unzip should be installed
+if (which unzip)
+then
+   echo "Unzip already installed"
+else
+   echo "Installing unzip"
+   sudo apt install unzip -y
 fi
 
 # Install the AWS CLI using pip
@@ -23,13 +33,18 @@ if (aws --version)
 then
   echo " AWS cli already installed"
 else
-  echo "Installing awscli"
-  pip3 install awscli --upgrade --user
+  echo "Unzipping installer"
+  unzip awscliv2.zip
 fi
 
 # Add the AWS CLI executable to the system path
-echo "export PATH=\$PATH:~/.local/bin" >> ~/.bashrc
-source ~/.bashrc
+if (aws --version) 
+then
+    echo "Aws-cli is installed"
+else
+   echo "Installing aws-cli"
+   sudo ./aws/install --bin-dir /usr/local/bin/aws --install-dir /usr/local/aws-cli/v2/current/bin/aws --update
+fi
 
 # Verify the installation
 aws --version
