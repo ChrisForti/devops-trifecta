@@ -3,14 +3,39 @@
 #!/bin/bash
 
 # Update the package list
-sudo apt update
+if (which jenkins)
+then
+   echo "Jenkins already installed"
+else
+   echo "installing jenkins"
+   sudo apt update
+fi
+
+if (which curl)
+then 
+   echo "curl is already installed"
+else
+   echo "Installing curl"
+   sudo apt install curl -y
+fi
 
 # Install Java if not already installed
-sudo apt install -y default-jre
+if (which java)
+then 
+  echo "Java already installed"
+else
+  echo "installing java"
+  sudo apt install -y default-jre
+fi
 
 # Download the Jenkins Debian package
-wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+if (which jenkins)
+then 
+   echo "Java is installed. Proceeding to install Jenkins"
+else
+   echo "Java install was unsuccesful, Java must be installed"
+   wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add - sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+fi
 
 # Update the package list again
 sudo apt update
