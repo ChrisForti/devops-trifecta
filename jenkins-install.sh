@@ -31,9 +31,9 @@ fi
 # Download the Jenkins Debian package
 if (which jenkins)
 then 
-   echo "Java is installed. Proceeding to install Jenkins"
+   echo " Jenkins installed"
 else
-   echo "Java install was unsuccesful, Java must be installed"
+   echo "Java install was unsuccesful, moving on to the jenkins install"
    wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add - sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 fi
 
