@@ -1,6 +1,5 @@
-# Here is a simple bash script that automates the installation of Jenkins on a Linux system using wget to download the Jenkins package and then installing it using the package manager:
-
 #!/bin/bash
+
 
 # Update the package list
 if (which jenkins)
@@ -11,12 +10,40 @@ else
    sudo apt update
 fi
 
-if (which curl)
+# Download the Jenkins Debian package
+if (which jenkins)
 then 
-   echo "curl is already installed"
+   echo " Jenkins installed"
 else
-   echo "Installing curl"
-   sudo apt install curl -y
+  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \ https://pkg.jenkins.io/debian/jenkins.io-2023.key
+  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \ https://pkg.jenkins.io/debian binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null \ sudo apt-get update
+fi
+
+# Snap should be installed
+if (which snap)
+then 
+   echo "snpa already installed" 
+else
+   echo "Installing snap"
+   sudo apt -y install snapd
+fi
+
+# Jenkins should be installed
+if (jenkins --version)
+then 
+   echo "Jenkins installed"
+else
+   echo "Installing jenkins"
+   sudo apt -y install jenkins  
+fi
+
+# openjdk should be installed
+if (which openjdk)
+then
+   echo "openjdk already installed"
+else
+   echo " Installing openjdk"
+   sudo snap install openjdk
 fi
 
 # Install Java if not already installed
@@ -25,34 +52,20 @@ then
   echo "Java already installed"
 else
   echo "installing java"
-  sudo apt install -y default-jre
+  sudo apt -y install fontconfig openjdk-17-jre
 fi
-
-# Download the Jenkins Debian package
-if (which jenkins)
-then 
-   echo "Java is installed. Proceeding to install Jenkins"
-else
-   echo "Java install was unsuccesful, Java must be installed"
-   wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add - sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-fi
-
-# Update the package list again
-sudo apt update
-
-# Install Jenkins
-sudo apt install -y jenkins
-
-# Start Jenkins service
-sudo systemctl start jenkins
 
 # Enable Jenkins service to start on system boot
-sudo systemctl enable jenkins
+# sudo systemctl enable jenkins
 
-# Output the initial admin password
-echo "Initial admin password:"
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-```
+# # Start Jenkins service
+# sudo systemctl start jenkins
+
+
+# # Output the initial admin password
+# echo "Initial admin password:"
+# sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
 
 # You can save this script in a file (e.g., jenkins-install.sh) and then make it executable using the following command:
 # chmod +x install-jenkins.sh
