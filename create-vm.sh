@@ -86,11 +86,14 @@ else
 fi
 
 # Copies webserver.sh to VM
+<<<<<<< HEAD
 scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh aws-cli-install.sh jenkins-install.sh ansible-install.sh docker-install.sh amazon-cli-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
+=======
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no jenkins-install.sh docker-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
+>>>>>>> 39747409ea402465e6681c21b0981dbf4e963d63
 
 # SSH into trifecta VM
 ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }')" 
 
 # The commands below utilize multipass exec to manipulate the vm from another terminal. this is just here for notes and testing
 # zsh create-vm.sh && multipass exec trifecta -- sudo apt update && multipass exec trifecta -- sudo apt install -y nginx &&  multipass exec trifecta -- curl localhost && multipass info trifecta
-
