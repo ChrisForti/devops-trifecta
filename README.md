@@ -15,6 +15,9 @@
 - Install Docker on the VM:
   - **Purpose:** Docker is a platform for developing, shipping, and running applications in containers. By installing Docker on a VM, you learn how to set up containerized environments, which are crucial for modern microservices architectures and improving deployment consistency and scalability.
 
-## These tasks are designed to help develop skills in automating infrastructure setup, managing cloud resources, and using containerization tools. All of which are essential competencies in DevOps.
+## These tasks are designed to help develop skills in automating infrastructure setup, managing cloud resources using virtiualization, and containerization tools. All of which are essential competencies in DevOps.
+
+- Virtualization being a snapshot of an entire working computer.
+- containerization being a snapshot of a working operatiing sysytem.
 
 [pdf flow chart](/assests/Project-Illustration.pdf)
