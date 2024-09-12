@@ -56,7 +56,8 @@ else
 fi
 
 # ssh keys
-if [ stat "./id_ed25519" ]
+if [ -f "./id_ed25519" ]
+#if [ stat "./id_ed25519" ]
 then
   echo "trifecta ssh key exists"
 else
@@ -91,11 +92,7 @@ else
 fi
 
 # Copies webserver.sh to VM
-<<<<<<< HEAD
-scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh aws-cli-install.sh jenkins-install.sh ansible-install.sh docker-install.sh amazon-cli-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
-=======
-scp -i ./id_ed25519 -o StrictHostKeyChecking=no jenkins-install.sh docker-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
->>>>>>> 39747409ea402465e6681c21b0981dbf4e963d63
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh aws-cli-install.sh ansible-install.sh jenkins-install.sh amazon-cli-install.sh docker-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
 
 # SSH into trifecta VM
 ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }')" 
