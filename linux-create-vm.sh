@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Update and Upgrade apt
-
-sudo apt update
-sudo apt upgrade
-
 # Install git
   echo "git should be installed"
 if ( which git )
