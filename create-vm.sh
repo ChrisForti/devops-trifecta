@@ -41,15 +41,6 @@ else
   sleep 5
 fi
 
-# Set Multipass local driver to Qemu
-if [ "$(multipass get local.driver)" = "qemu" ]
-then
-  echo -e "\n==== Qemu local driver set ====\n"
-else
-  echo -e "\n==== Setting Qemu as Multipass local driver ====\n"
-  multipass set local.driver=qemu
-fi
-
 # ssh keys
 if [ stat "./id_ed25519" ]
 then
@@ -86,7 +77,7 @@ else
 fi
 
 # Copies webserver.sh to VM
-scp -i ./id_ed25519 -o StrictHostKeyChecking=no jenkins-install.sh docker-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no ./webserver-builds/nginx.sh ./virtualization-installs/jenkins-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
 
 # SSH into trifecta VM
 ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }')" 
