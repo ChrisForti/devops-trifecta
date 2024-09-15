@@ -18,5 +18,4 @@
 ## These tasks are designed to help develop skills in automating infrastructure setup, managing cloud resources using virtiualization, and containerization tools. All of which are essential competencies in DevOps.
 
 - Virtualization being a snapshot of an entire working computer.
-- containerization being a snapshot of a working operat
-  ing sysytem.
+- containerization being a snapshot of a working operating sysytem.
