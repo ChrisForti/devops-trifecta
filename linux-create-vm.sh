@@ -46,7 +46,7 @@ then
   echo "trifecta ssh key exists"
 else
   echo "creating ssh keys for trifecta"
-  ssh-keygen -f ./id_ed25519 -t ed25519 -b 4096 -N ''
+  ssh-keygen -f ./id_ed25519 -t ed25519 -N ''
 fi
 
 #create cloud-init.yaml
