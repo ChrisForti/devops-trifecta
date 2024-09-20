@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Install homebrew
-  echo "brew should be installed"
+# brew should be installed
 if ( which brew )
 then
   echo "brew already installed"
@@ -10,8 +9,7 @@ else
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-# Install git
-  echo "git should be installed"
+# git should be installed
 if ( which git )
 then 
   echo "git already installed"
@@ -20,8 +18,7 @@ else
   brew install git
 fi
 
-#install nano
-  echo "nano should be installed"
+# nano should be installed
 if ( which nano )
 then
   echo "nano already installed"
@@ -30,7 +27,7 @@ else
   brew install nano 
 fi
 
-# Install multipass
+# multipass should be installed
   echo "installing multipass on $(uname)"
 if  ( which multipass )
 then
