@@ -1,12 +1,7 @@
 #!/bin/bash
 
-# Update and Upgrade apt
-
-sudo apt update
-sudo apt upgrade
-
-# Install git
-  echo "git should be installed"
+#install git
+echo "git should be installed"
 if ( which git )
 then 
   echo "git already installed"
@@ -16,7 +11,7 @@ else
 fi
 
 #install nano
-  echo "nano should be installed"
+echo "nano should be installed"
 if ( which nano )
 then
   echo "nano already installed"
@@ -26,7 +21,7 @@ else
 fi
 
 #install snap
-  echo "nano should be installed"
+echo "nano should be installed"
 if ( which snap )
 then
   echo "snap already installed"
@@ -35,29 +30,18 @@ else
   sudo apt install snap 
 fi
 
-# Install multipass
-  echo "installing multipass on $(uname)"
+#install multipass
+echo "multipass should be installed"
 if  ( which multipass )
 then
-  echo "multipass already installed on $(uname)"
+  echo "multipass already installed"
 else
-  echo "installing multipass on $(uname)"  
+  echo "installing multipass" 
   sudo snap install multipass
-  sleep 5
 fi
 
-# Set Multipass local driver to Qemu
-if [ "$(multipass get local.driver)" = "qemu" ]
-then
-  echo -e "\n==== Qemu local driver set ====\n"
-else
-  echo -e "\n==== Setting Qemu as Multipass local driver ====\n"
-  multipass set local.driver=qemu
-fi
-
-# ssh keys
+#generating ssh keys
 if [ -f "./id_ed25519" ]
-#if [ stat "./id_ed25519" ]
 then
   echo "trifecta ssh key exists"
 else
@@ -65,7 +49,7 @@ else
   ssh-keygen -f ./id_ed25519 -t ed25519 -b 4096 -N ''
 fi
 
-# Create cloud-init.yaml
+#create cloud-init.yaml
 if [ -f cloud-init.yaml ] 
 then
   echo -e "\n==== Cloud-init.yaml present ====\n"
@@ -82,7 +66,7 @@ users:
 EOF
 fi
 
-# Spinning up an ubuntu vm
+#starting up an ubuntu vm
 if ( multipass info trifecta | grep Running )
 then 
   echo "trifecta vm is running"
@@ -92,7 +76,7 @@ else
 fi
 
 # Copies webserver.sh to VM
-scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh aws-cli-install.sh ansible-install.sh jenkins-install.sh amazon-cli-install.sh docker-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no ./webserver-builds/nginx.sh ./virtualization-installs/ansible-install.sh ./virtualization-installs/jenkins-install.sh ./virtualization-installs/aws-cli-install.sh ./containerization-installs/docker-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
 
 # SSH into trifecta VM
 ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }')" 
