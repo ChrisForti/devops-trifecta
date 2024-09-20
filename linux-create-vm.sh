@@ -75,10 +75,10 @@ else
   multipass launch --name trifecta --cloud-init cloud-init.yaml
 fi
 
-# Copies webserver.sh to VM
+#copies webserver.sh to VM
 scp -i ./id_ed25519 -o StrictHostKeyChecking=no ./webserver-builds/nginx.sh ./virtualization-installs/ansible-install.sh ./virtualization-installs/jenkins-install.sh ./virtualization-installs/aws-cli-install.sh ./containerization-installs/docker-install.sh $USER@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }'):~/
 
-# SSH into trifecta VM
+#ssh into trifecta VM
 ssh -o StrictHostKeyChecking=no -i ./id_ed25519 "$(whoami | cut -d '\' -f2)@$(multipass info trifecta | grep IPv4 | awk '{ print $2 }')" 
 
 # The commands below utilize multipass exec to manipulate the vm from another terminal. this is just here for notes and testing
