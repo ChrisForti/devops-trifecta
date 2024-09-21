@@ -1,19 +1,19 @@
 #!/bin/bash
-
+# For reference https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 
 # Update the package list
 if (which jenkins)
 then
    echo "Jenkins already installed"
 else
-   echo "installing jenkins"
+   echo "Updating pkg list"
    sudo apt update
 fi
 
 # Download the Jenkins Debian package
-if (which jenkins)
+if (test -f /usr/share/keyrings/jenkins-keyring.asc)
 then 
-   echo " Jenkins installed"
+   echo "Jenkins Debian pkg exists"
 else
   sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \ https://pkg.jenkins.io/debian/jenkins.io-2023.key
   echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \ https://pkg.jenkins.io/debian binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null \ sudo apt-get update
@@ -22,7 +22,7 @@ fi
 # Snap should be installed
 if (which snap)
 then 
-   echo "snpa already installed" 
+   echo "snap already installed" 
 else
    echo "Installing snap"
    sudo apt -y install snapd
@@ -46,7 +46,7 @@ else
    sudo snap install openjdk
 fi
 
-# Install Java if not already installed
+# Java should be installed
 if (which java)
 then 
   echo "Java already installed"
@@ -62,7 +62,8 @@ fi
 # sudo systemctl start jenkins
 
 
-# # Output the initial admin password
+# We are going to have to probably do a yml file to pass this password in.
+# Output the initial admin password
 # echo "Initial admin password:"
 # sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
