@@ -7,7 +7,7 @@ then
   echo "git already installed"
 else 
   echo "installing git"
-  sudo apt install git
+  sudo apt install git -y
 fi
 
 #install nano
@@ -17,7 +17,7 @@ then
   echo "nano already installed"
 else
   echo "installing nano"
-  sudo apt install nano 
+  sudo apt install nano -y
 fi
 
 #install snap
@@ -27,7 +27,7 @@ then
   echo "snap already installed"
 else
   echo "installing snap"
-  sudo apt install snap 
+  sudo apt install -y snapd 
 fi
 
 #install multipass
