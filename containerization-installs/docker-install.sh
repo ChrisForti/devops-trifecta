@@ -28,7 +28,7 @@ fi
 # Creating a keyrings directory 
 if (test -d /etc/bin/keyrings)
 then
-  echo "creating keyrings"
+  echo "keyrings directory already exist"
 else
   echo "Creating keyrings"
   sudo install -m 0755 -d /etc/apt/keyrings
