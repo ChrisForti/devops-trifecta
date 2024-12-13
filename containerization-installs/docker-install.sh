@@ -61,13 +61,14 @@ else
   sudo chmod a+r /etc/apt/keyrings/docker.asc
 fi
 
+# Add the repository to Apt sources:
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 
-
+# install docker-ce
 if (apt-cache show docker-ce)
 then
   echo "docker-ce already installed"
@@ -75,6 +76,7 @@ then
   sudo apt install -y docker-ce
 fi
 
+# install docker-ce-cli
 if (apt-cache show docker-ce-cli)
 then
   echo "docker-ce already installed"
@@ -82,6 +84,7 @@ then
   sudo apt install -y docker-ce-cli
 fi
 
+# install containerd.io
 if (apt-cache show containerd.io)
 then
   echo "containerd.io already installed"
@@ -89,6 +92,7 @@ then
   sudo apt install -y containerd.io
 fi
 
+# install docker-buildx-plugin
 if (apt-cache show docker-buildx-plugin)
 then
   echo "docker-buildx-plugin already installed"
@@ -96,7 +100,7 @@ then
   sudo apt install -y docker-buildx-plugin
 fi
 
-
+# install docker-compose-plugin
 if (apt-cache show docker-compose-plugin)
 then
   echo "docker-compose-plugin already installed"
