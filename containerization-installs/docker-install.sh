@@ -72,7 +72,7 @@ sudo apt-get update
 if (apt-cache show docker-ce)
 then
   echo "docker-ce already installed"
-  else
+else
   sudo apt install -y docker-ce
 fi
 
@@ -80,7 +80,7 @@ fi
 if (apt-cache show docker-ce-cli)
 then
   echo "docker-ce already installed"
-  else
+else
   sudo apt install -y docker-ce-cli
 fi
 
@@ -88,7 +88,7 @@ fi
 if (apt-cache show containerd.io)
 then
   echo "containerd.io already installed"
-  else
+else
   sudo apt install -y containerd.io
 fi
 
@@ -96,7 +96,7 @@ fi
 if (apt-cache show docker-buildx-plugin)
 then
   echo "docker-buildx-plugin already installed"
-  else
+else
   sudo apt install -y docker-buildx-plugin
 fi
 
@@ -104,7 +104,7 @@ fi
 if (apt-cache show docker-compose-plugin)
 then
   echo "docker-compose-plugin already installed"
-  else
+else
   sudo apt install -y docker-compose-plugin
 fi
 
