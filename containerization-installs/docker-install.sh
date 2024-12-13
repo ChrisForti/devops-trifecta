@@ -1,5 +1,5 @@
 # Update
-if (apt-cache show docker)
+if (which docker)
 then
   echo "Running dockers latest"
 else
@@ -34,29 +34,39 @@ else
   sudo install -m 0755 -d /etc/apt/keyrings
 fi
 
+# Check if the keyrings directory exists & if not, create it
+if [ -f /etc/apt/keyrings/docker.asc ]
+then
+  echo "The Docker GPG key already exists"
+else
+  echo "The Docker GPG key does not exist. Downloading it"
+  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+fi
 
+# Check if the Docker GPG key exists & if not, install it
+if [ -f /etc/apt/keyrings/docker.asc ]
+then
+  echo "The Docker GPG key already exists"
+else
+  echo "The Docker GPG key does not exist. Downloading it"
+  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+fi
  
 # setting permissions 
-if (test -d /etc/apt/keyrings/docker.asc)
+if (-r /etc/apt/keyrings/docker.asc)
 then
-  echo " gpg keyring already configured"
+  echo "gpg keyring already configured"
 else
   echo "Setting permissions for gpg keyring"
   sudo chmod a+r /etc/apt/keyrings/docker.asc
 fi
 
-# Intializing repository, and placing copies in .list files
-if (test -S  /etc/os-release && echo "$VERSION_CODENAME")
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
 
-
-# Update
-if (apt-cache show docker)
-then
-  echo "Running dockers latest"
-else
-  echo "Updating the latest docker"
-  sudo apt update
-fi
 
 if (apt-cache show docker-ce)
 then
@@ -85,6 +95,7 @@ then
   else
   sudo apt install -y docker-buildx-plugin
 fi
+
 
 if (apt-cache show docker-compose-plugin)
 then
