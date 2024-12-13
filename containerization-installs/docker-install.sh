@@ -37,7 +37,7 @@ fi
 
  
 # setting permissions 
-if (test -d /etc/bin/keyrings/docker.asc)
+if (test -d /etc/apt/keyrings/docker.asc)
 then
   echo " gpg keyring already configured"
 else
