@@ -58,11 +58,46 @@ else
   sudo apt update
 fi
 
-# Then install docker's latest
-if (which docker)
+if (apt-cache show docker-ce)
 then
-  echo "Docker already installed"
-else
-  echo "Installing docker"
-  sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  echo "docker-ce already installed"
+  else
+  sudo apt install -y docker-ce
 fi
+
+if (apt-cache show docker-ce-cli)
+then
+  echo "docker-ce already installed"
+  else
+  sudo apt install -y docker-ce-cli
+fi
+
+if (apt-cache show containerd.io)
+then
+  echo "containerd.io already installed"
+  else
+  sudo apt install -y containerd.io
+fi
+
+if (apt-cache show docker-buildx-plugin)
+then
+  echo "docker-buildx-plugin already installed"
+  else
+  sudo apt install -y docker-buildx-plugin
+fi
+
+if (apt-cache show docker-compose-plugin)
+then
+  echo "docker-compose-plugin already installed"
+  else
+  sudo apt install -y docker-compose-plugin
+fi
+
+# Then install docker's latest
+# if (which docker)
+# then
+#   echo "Docker already installed"
+# else
+#   echo "Installing docker"
+#   sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# fi
