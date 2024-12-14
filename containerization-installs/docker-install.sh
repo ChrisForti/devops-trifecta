@@ -132,6 +132,34 @@ else
   sudo apt install -y docker-compose-plugin
 fi
 
+# docker instal via snap
+if (which docker)
+then
+  echo "docker already installed"
+else
+  echo "Installing docker"
+  sudo snap install -y docker
+fi
+
+# docker.io instal via apt
+if (which docker.io)
+then
+  echo "docker.io already installed"
+else
+  echo "Installing docker"
+  sudo apt install -y docker,io
+fi
+
+# podman-docker instal via apt
+if (which podman-docker)
+then
+  echo "podman-docker already installed"
+else
+  echo "Installing podman-docker"
+  sudo snap install -y podman-docker
+fi
+
+
 # **TODO**
 # fortis@trifecta:~$ docker --version
 # Command 'docker' not found, but can be installed with:
