@@ -1,7 +1,6 @@
 # Trifecta
 
-This repository will build a virtual machine, and load it with various scripts. That are meant to be a infrastructure starting point. For a multitude of developer operations tools. It is made so that it can be scaled to whatever the developer requires.  
-(Currently only the darwin create vm script has been tested)
+This repository is designed to build a virtual machine and equip it with a variety of scripts, serving as a foundational infrastructure setup for various developer operations tools. It is structured to be scalable, accommodating different developer needs and environments. Currently, only the VM creation script for Darwin (macOS) has been tested.
 
 1. from your mac run:
    `darwin-create-vm`
