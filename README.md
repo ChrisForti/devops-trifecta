@@ -7,18 +7,21 @@ This repository will build a virtual machine, and load it with various scripts. 
    `darwin-create-vm`
 2. this script will palce you into the vm's shell
    `ls` will give you a list of completed install scripts.
-   (<font color="red">more will be added as they are finished and tested</font>)
+   (more will be added as they are finished and tested)
 3. from your **trifecta** shell run:
 
-**container-installs**
+4. **container-installs**
 
 - docker
   `bash docker-install.sh`
 
-**webserver-installs**
+5. **webserver-installs**
 
 - webserver
-  `nginx.sh`
+  `bash nginx.sh`
 
-**virtualization-installs**
-<font color="red">Thess will be added when completed</font>
+6. **virtualization-installs**
+
+- jenkins
+  `bash jenkins-install.sh`
+  **(more will be added when completed)**
