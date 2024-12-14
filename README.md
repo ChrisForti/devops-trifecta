@@ -4,10 +4,9 @@ This repository is designed to build a virtual machine and equip it with a varie
 
 1. from your mac run:
    `darwin-create-vm`
-2. this script will palce you into the vm's shell
+2. this script will place you into the **trifecta's** shell
    `ls` will give you a list of completed install scripts.
-   (more will be added as they are finished and tested)
-3. from your **trifecta** shell run:
+3. from the **trifecta** shell run:
 
 4. **container-installs**
 
@@ -23,4 +22,5 @@ This repository is designed to build a virtual machine and equip it with a varie
 
 - jenkins
   `bash jenkins-install.sh`
-  **(more will be added when completed)**
+
+**(more will be added when completed)**
