@@ -136,13 +136,6 @@ else
   sudo apt install -y docker.io
 fi
 
-# # podman-docker install via apt
-# if (which podman-docker)
-# then
-#   echo "podman-docker already installed"
-# else
-#   echo "Installing podman-docker"
-#   sudo snap install podman-docker
-# fi
+
 
 
