@@ -63,11 +63,19 @@ else
    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 fi
 
+# docker install 
+if (which docker)
+then
+  echo "docker already installed"
+else
+  echo "Installing docker"
+  sudo apt install -y docker
+fi
 
 # Check cache for repo
 if (apt-cache search docker -ce | grep -q "docker-ce")
 then
-    echo "Docker reepository already exists in the cache."
+    echo "Docker repository already exists in the cache."
 else
     echo "Updating apt cache."
     sudo apt update
@@ -118,14 +126,6 @@ else
   sudo apt install -y docker-compose-plugin
 fi
 
-# docker install via snap
-if (which docker)
-then
-  echo "docker already installed"
-else
-  echo "Installing docker"
-  sudo snap install -y docker
-fi
 
 # docker.io install via apt
 if (which docker.io)
