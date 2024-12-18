@@ -35,7 +35,7 @@ else
 fi
 
 # Check if the keyrings directory exists & if not, create it
-if [ -f /etc/apt/keyrings/docker.asc ]
+if (test -f /etc/apt/keyrings/docker.asc )
 then
   echo "The Docker GPG key already exists"
 else
@@ -43,14 +43,6 @@ else
   sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 fi
 
-# Check if the Docker GPG key exists & if not, install it
-if [ -f /etc/apt/keyrings/docker.asc ]
-then
-  echo "The Docker GPG key already exists"
-else
-  echo "The Docker GPG key does not exist. Downloading it"
-  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-fi
  
 # setting permissions 
 if (test -d /etc/bin/keyrings/docker.asc)
@@ -71,11 +63,10 @@ else
    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 fi
 
-
 # Check cache for repo
 if (apt-cache search docker -ce | grep -q "docker-ce")
 then
-    echo "Docker reepository already exists in the cache."
+    echo "Docker repository already exists in the cache."
 else
     echo "Updating apt cache."
     sudo apt update
@@ -126,16 +117,7 @@ else
   sudo apt install -y docker-compose-plugin
 fi
 
-# docker instal via snap
-if (which docker)
-then
-  echo "docker already installed"
-else
-  echo "Installing docker"
-  sudo snap install -y docker
-fi
-
-# docker.io instal via apt
+# docker.io install
 if (which docker.io)
 then
   echo "docker.io already installed"
@@ -144,13 +126,5 @@ else
   sudo apt install -y docker.io
 fi
 
-# podman-docker instal via apt
-if (which podman-docker)
-then
-  echo "podman-docker already installed"
-else
-  echo "Installing podman-docker"
-  sudo snap install -y podman-docker
-fi
 
 
