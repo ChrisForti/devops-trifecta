@@ -63,15 +63,6 @@ else
    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 fi
 
-# # docker install 
-# if (which docker)
-# then
-#   echo "docker already installed"
-# else
-#   echo "Installing docker"
-#   sudo apt install -y docker
-# fi
-
 # Check cache for repo
 if (apt-cache search docker -ce | grep -q "docker-ce")
 then
@@ -126,7 +117,7 @@ else
   sudo apt install -y docker-compose-plugin
 fi
 
-# docker.io install via apt
+# docker.io install
 if (which docker.io)
 then
   echo "docker.io already installed"
@@ -134,7 +125,6 @@ else
   echo "Installing docker"
   sudo apt install -y docker.io
 fi
-
 
 
 
