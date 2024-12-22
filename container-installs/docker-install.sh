@@ -124,14 +124,7 @@ else
   sudo apt install -y docker-compose-plugin
 fi
 
-# # docker.io install
-# if (dpkg -l | grep -q docker.io)
-# then
-#   echo "docker.io already installed"
-# else
-#   echo "Installing docker"
-#   sudo apt install -y docker.io
-# fi
+
 
 
 
