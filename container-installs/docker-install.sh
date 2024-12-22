@@ -73,7 +73,7 @@ else
 fi
 
 # install docker-ce
-if (apt-cache show docker-ce)
+if (dpkg -l | grep -q docker-ce)
 then
   echo "docker-ce already installed"
 else
@@ -82,7 +82,7 @@ else
 fi
 
 # install docker-ce-cli
-if (apt-cache show docker-ce-cli)
+if (dpkg -l | grep -q docker-ce-cli)
 then
   echo "docker-ce-cli already installed"
 else
@@ -90,8 +90,15 @@ else
   sudo apt install -y docker-ce-cli
 fi
 
+# removing conflicting pkgs
+if (dpkg -l | grep containerd)
+then
+  echo "Removing conflicting containerd package"
+  sudo apt remove containerd
+fi
+
 # install containerd.io
-if (apt-cache show containerd.io)
+if (dpkg -l | grep -q containerd.io)
 then
   echo "containerd.io already installed"
 else
@@ -100,7 +107,7 @@ else
 fi
 
 # install docker-buildx-plugin
-if (apt-cache show docker-buildx-plugin)
+if (dpkg -l | grep -q docker-buildx-plugin)
 then
   echo "docker-buildx-plugin already installed"
 else
@@ -109,7 +116,7 @@ else
 fi
 
 # install docker-compose-plugin
-if (apt-cache show docker-compose-plugin)
+if (dpkg -l | grep -q docker-compose-plugin)
 then
   echo "docker-compose-plugin already installed"
 else
@@ -117,14 +124,14 @@ else
   sudo apt install -y docker-compose-plugin
 fi
 
-# docker.io install
-if (which docker.io)
-then
-  echo "docker.io already installed"
-else
-  echo "Installing docker"
-  sudo apt install -y docker.io
-fi
+# # docker.io install
+# if (dpkg -l | grep -q docker.io)
+# then
+#   echo "docker.io already installed"
+# else
+#   echo "Installing docker"
+#   sudo apt install -y docker.io
+# fi
 
 
 
