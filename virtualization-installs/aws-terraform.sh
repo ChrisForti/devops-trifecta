@@ -1,37 +1,37 @@
 # Check if gnupg is in the apt cache
 if apt-cache show gnupg; then
-    echo "gnupg already exists in the apt cache 👍"
+    echo "gnupg already exists in the apt cache"
 else
-    echo "gnupg not found in apt cache, updating package lists 🔄"
+    echo "gnupg not found in apt cache, updating package lists"
     sudo apt update
 fi
 
 # Check if software-properties-common is in the apt cache
 if apt-cache show software-properties-common; then
-    echo "software-properties-common already exists in the apt cache 👍"
+    echo "software-properties-common already exists in the apt cache"
 else
-    echo "software-properties-common not found in apt cache, updating package lists 🔄"
+    echo "software-properties-common not found in apt cache, updating package lists"
     sudo apt update
 fi
 
 # Install gnupg 
 if (which gnupg);
 then
-    echo "gnupg is already installed 🎉"
+    echo "gnupg is already installed"
 else
     echo "Installing gnupg...⬇️"
     sudo apt-get install -y gnupg
-    echo "gnupg is installed ✨👍"
+    echo "gnupg is installed "
 fi
 
 # Install software-properties-common
 if (which software-properties-common); 
 then
-  echo "software-properties-common is installed 🎉"
+  echo "software-properties-common is installed"
 else
-  echo "Installing software-properties-common...⬇️"
+  echo "Installing software-properties-common"
   sudo apt-get install -y software-properties-common
-  echo "software-properties-common is installed ✨👍"
+  echo "software-properties-common is installed "
 fi
 
 # Check if the keyring file exists
