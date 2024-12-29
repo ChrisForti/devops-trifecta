@@ -2,7 +2,7 @@
 # For reference https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 
 # Update the package list
-if (which jenkins)
+if (apt-cache show jenkins)
 then
    echo "Jenkins already installed"
 else
@@ -10,23 +10,32 @@ else
    sudo apt update
 fi
 
+# Java should be installed
+if (which java)
+then 
+  echo "Java already installed"
+else
+  echo "installing java"
+  sudo apt -y install fontconfig openjdk-17-jre
+fi
+
 # Download the Jenkins Debian package
 if (test -f /usr/share/keyrings/jenkins-keyring.asc)
 then 
    echo "Jenkins Debian pkg exists"
 else
-  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \ https://pkg.jenkins.io/debian/jenkins.io-2023.key
+  sudo curl -fssl  https://pkg.jenkins.io/debian/jenkins.io-2023.key -O /usr/share/keyrings/jenkins-keyring.asc
   echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \ https://pkg.jenkins.io/debian binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null \ sudo apt-get update
 fi
 
 # Snap should be installed
-if (which snap)
-then 
-   echo "snap already installed" 
-else
-   echo "Installing snap"
-   sudo apt -y install snapd
-fi
+# if (which snap)
+# then 
+#    echo "snap already installed" 
+# else
+#    echo "Installing snap"
+#    sudo apt -y install snapd
+# fi
 
 # Jenkins should be installed
 if (jenkins --version)
@@ -47,13 +56,13 @@ else
 fi
 
 # Java should be installed
-if (which java)
-then 
-  echo "Java already installed"
-else
-  echo "installing java"
-  sudo apt -y install fontconfig openjdk-17-jre
-fi
+# if (which java)
+# then 
+#   echo "Java already installed"
+# else
+#   echo "installing java"
+#   sudo apt -y install fontconfig openjdk-17-jre
+# fi
 
 # Enable Jenkins service to start on system boot
 # sudo systemctl enable jenkins
