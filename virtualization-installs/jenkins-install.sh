@@ -10,6 +10,15 @@ else
    sudo apt update
 fi
 
+# Installing curl
+if (which curl)
+then
+  echo "curl already installed"
+else
+  echo "Installing curl"
+  sudo apt install -y curl 
+fi
+
 # Java should be installed
 if (which java)
 then 
@@ -19,14 +28,37 @@ else
   sudo apt -y install fontconfig openjdk-17-jre
 fi
 
-# Download the Jenkins Debian package
+# Creating a keyrings directory 
+if (test -d /usr/share/keyrings)
+then
+  echo "keyrings directory already exist"
+else
+  echo "Creating keyrings"
+  sudo install -m 0755 -d /usr/share/keyrings
+fi
+
+# Download the keyring directory exists
 if (test -f /usr/share/keyrings/jenkins-keyring.asc)
 then 
    echo "Jenkins Debian pkg exists"
 else
+  echo "Repository not found. Adding repository."
   sudo curl -fssl  https://pkg.jenkins.io/debian/jenkins.io-2023.key -O /usr/share/keyrings/jenkins-keyring.asc
-  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \ https://pkg.jenkins.io/debian binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null \ sudo apt-get update
 fi
+ 
+# set permissions "chmod"
+
+ # follow docker install to break up the remainding commands
+if (stat -d /etc/apt/sources.list.d/jenkins.list)
+then
+   echo ""
+else
+   echo ""
+   echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]"  https://pkg.jenkins.io/debian binary/ | \
+   sudo tee  /etc/apt/sources.list.d/jenkins.list > /dev/null 
+fi 
+
+sudo apt-get update
 
 # Snap should be installed
 # if (which snap)
